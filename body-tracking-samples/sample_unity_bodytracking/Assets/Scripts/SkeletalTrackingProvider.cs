@@ -109,6 +109,7 @@ public class SkeletalTrackingProvider : BackgroundDataProvider
                     tracker.Dispose();
                 }
                 device.Dispose();
+                IsRunning = false;
             }
             if (RawDataLoggingFile != null)
             {
