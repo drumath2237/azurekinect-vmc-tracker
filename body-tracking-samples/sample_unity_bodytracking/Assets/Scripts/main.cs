@@ -39,6 +39,10 @@ public class main : MonoBehaviour
         if (m_backgroundDataProvider != null)
         {
             m_backgroundDataProvider.StopClientThread();
+            while (m_backgroundDataProvider.IsRunning)
+            {
+                ;
+            }
         }
     }
 }
