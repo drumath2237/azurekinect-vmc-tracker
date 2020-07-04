@@ -127,6 +127,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7083459844674329116, guid: 4a40f5e7ab5bfe9459f440ba4df2c0f8,
+        type: 3}
+      propertyPath: DeviceSerial
+      value: RightFoot
+      objectReference: {fileID: 0}
     - target: {fileID: 4683864244867614001, guid: 4a40f5e7ab5bfe9459f440ba4df2c0f8,
         type: 3}
       propertyPath: m_Name
@@ -285,6 +290,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7083459844674329116, guid: 4a40f5e7ab5bfe9459f440ba4df2c0f8,
+        type: 3}
+      propertyPath: DeviceMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7083459844674329116, guid: 4a40f5e7ab5bfe9459f440ba4df2c0f8,
+        type: 3}
+      propertyPath: DeviceSerial
+      value: RightHand
+      objectReference: {fileID: 0}
     - target: {fileID: 4683864244867614001, guid: 4a40f5e7ab5bfe9459f440ba4df2c0f8,
         type: 3}
       propertyPath: m_Name
@@ -360,6 +375,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7083459844674329116, guid: 4a40f5e7ab5bfe9459f440ba4df2c0f8,
+        type: 3}
+      propertyPath: DeviceSerial
+      value: Spine
+      objectReference: {fileID: 0}
     - target: {fileID: 4683864244867614001, guid: 4a40f5e7ab5bfe9459f440ba4df2c0f8,
         type: 3}
       propertyPath: m_Name
@@ -435,6 +455,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7083459844674329116, guid: 4a40f5e7ab5bfe9459f440ba4df2c0f8,
+        type: 3}
+      propertyPath: DeviceMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7083459844674329116, guid: 4a40f5e7ab5bfe9459f440ba4df2c0f8,
+        type: 3}
+      propertyPath: DeviceSerial
+      value: Head
+      objectReference: {fileID: 0}
     - target: {fileID: 4683864244867614001, guid: 4a40f5e7ab5bfe9459f440ba4df2c0f8,
         type: 3}
       propertyPath: m_Name
@@ -601,6 +631,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7083459844674329116, guid: 4a40f5e7ab5bfe9459f440ba4df2c0f8,
+        type: 3}
+      propertyPath: DeviceMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7083459844674329116, guid: 4a40f5e7ab5bfe9459f440ba4df2c0f8,
+        type: 3}
+      propertyPath: DeviceSerial
+      value: LeftHand
+      objectReference: {fileID: 0}
     - target: {fileID: 4683864244867614001, guid: 4a40f5e7ab5bfe9459f440ba4df2c0f8,
         type: 3}
       propertyPath: m_Name
@@ -705,6 +745,10 @@ MonoBehaviour:
   _hip: {fileID: 675460092}
   _leftFoot: {fileID: 2136096888}
   _rightFoot: {fileID: 272285634}
+  rotation_x_bias: -1
+  rotation_y_bias: 1
+  rotation_z_bias: 1
+  rotation_w_bias: -1
 --- !u!114 &2134132051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -738,6 +782,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7083459844674329116, guid: 4a40f5e7ab5bfe9459f440ba4df2c0f8,
+        type: 3}
+      propertyPath: DeviceSerial
+      value: LeftFoot
+      objectReference: {fileID: 0}
     - target: {fileID: 4683864244867614001, guid: 4a40f5e7ab5bfe9459f440ba4df2c0f8,
         type: 3}
       propertyPath: m_Name

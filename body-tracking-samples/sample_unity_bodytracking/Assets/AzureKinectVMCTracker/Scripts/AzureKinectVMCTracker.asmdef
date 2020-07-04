@@ -2,7 +2,8 @@
     "name": "AzureKinectVMCTracker",
     "references": [
         "GUID:fa5fe09edb3c5ff4e9ad10acf155dfdf",
-        "GUID:c3ffe45649a07b043a03ce69f5a1a08b"
+        "GUID:c3ffe45649a07b043a03ce69f5a1a08b",
+        "GUID:73bf3f98188498149a6ef3b458961c13"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [],
