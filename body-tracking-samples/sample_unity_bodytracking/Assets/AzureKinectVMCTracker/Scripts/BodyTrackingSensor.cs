@@ -33,7 +33,7 @@ namespace AzureKinectVMCTracker
                             _mBackgroudData.Bodies[0].JointPositions3D[0].Y,
                             _mBackgroudData.Bodies[0].JointPositions3D[0].Z
                         );
-                        Debug.Log(v);
+                        _head.position = v*10f;
                     }
                 }
             }
