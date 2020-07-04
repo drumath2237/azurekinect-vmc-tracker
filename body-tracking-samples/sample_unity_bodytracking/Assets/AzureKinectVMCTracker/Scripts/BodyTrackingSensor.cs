@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Microsoft.Azure.Kinect.BodyTracking;
 using UnityEngine;
 
 namespace AzureKinectVMCTracker
@@ -11,6 +13,8 @@ namespace AzureKinectVMCTracker
 
         [SerializeField] private Transform _head, _leftHand, _rightHand, _hip, _leftFoot, _rightFoot;
 
+        private Dictionary<Transform, JointId> _jointTable;
+
         private void Start()
         {
             SkeletalTrackingProvider mSkeletalTracking = new SkeletalTrackingProvider();
@@ -18,6 +22,16 @@ namespace AzureKinectVMCTracker
             const int TRACKING_ID = 0;
             mSkeletalTracking.StartClientThread(TRACKING_ID);
             _mBackgroudProvider = mSkeletalTracking;
+
+            _jointTable = new Dictionary<Transform, JointId>()
+            {
+                {_head, JointId.Head},
+                {_leftHand, JointId.HandLeft},
+                {_rightHand, JointId.HandRight},
+                {_hip, JointId.Pelvis},
+                {_leftFoot, JointId.FootLeft},
+                {_rightFoot, JointId.FootRight}
+            };
         }
 
         private void Update()
@@ -28,12 +42,14 @@ namespace AzureKinectVMCTracker
                 {
                     if (_mBackgroudData.NumOfBodies != 0)
                     {
-                        var v = new Vector3(
-                            _mBackgroudData.Bodies[0].JointPositions3D[0].X,
-                            _mBackgroudData.Bodies[0].JointPositions3D[0].Y,
-                            _mBackgroudData.Bodies[0].JointPositions3D[0].Z
-                        );
-                        _head.position = v*10f;
+                        foreach (var tracker in _jointTable)
+                        {
+                            tracker.Key.position = new Vector3(
+                                _mBackgroudData.Bodies[0].JointPositions3D[(int) tracker.Value].X,
+                                -_mBackgroudData.Bodies[0].JointPositions3D[(int) tracker.Value].Y,
+                                _mBackgroudData.Bodies[0].JointPositions3D[(int) tracker.Value].Z
+                            )*10f;
+                        }
                     }
                 }
             }
