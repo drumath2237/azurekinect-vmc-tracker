@@ -6,25 +6,25 @@ namespace AzureKinectVMCTracker
     [RequireComponent(typeof(ConfigLoader))]
     public class BodyTrackingSensor : MonoBehaviour
     {
-        private BackgroundDataProvider m_backgroudProvider;
-        private BackgroundData m_backgroudData;
+        private BackgroundDataProvider _mBackgroudProvider;
+        private BackgroundData _mBackgroudData;
 
         [SerializeField] private Transform _head, _leftHand, _rightHand, _hip, _leftFoot, _rightFoot;
 
         private void Start()
         {
-            SkeletalTrackingProvider m_skeletalTracking = new SkeletalTrackingProvider();
+            SkeletalTrackingProvider mSkeletalTracking = new SkeletalTrackingProvider();
 
             const int TRACKING_ID = 0;
-            m_skeletalTracking.StartClientThread(TRACKING_ID);
-            m_backgroudProvider = m_skeletalTracking;
+            mSkeletalTracking.StartClientThread(TRACKING_ID);
+            _mBackgroudProvider = mSkeletalTracking;
         }
 
         private void Update()
         {
-            if (m_backgroudProvider.IsRunning)
+            if (_mBackgroudProvider.IsRunning)
             {
-                if (m_backgroudProvider.GetCurrentFrameData(ref m_backgroudData))
+                if (_mBackgroudProvider.GetCurrentFrameData(ref _mBackgroudData))
                 {
 //                    m_backgroudData.Bodies[0].
                 }
@@ -33,7 +33,7 @@ namespace AzureKinectVMCTracker
 
         private void OnApplicationQuit()
         {
-            m_backgroudProvider?.StopClientThread();
+            _mBackgroudProvider?.StopClientThread();
         }
     }
 }
