@@ -26,7 +26,15 @@ namespace AzureKinectVMCTracker
             {
                 if (_mBackgroudProvider.GetCurrentFrameData(ref _mBackgroudData))
                 {
-//                    m_backgroudData.Bodies[0].
+                    if (_mBackgroudData.NumOfBodies != 0)
+                    {
+                        var v = new Vector3(
+                            _mBackgroudData.Bodies[0].JointPositions3D[0].X,
+                            _mBackgroudData.Bodies[0].JointPositions3D[0].Y,
+                            _mBackgroudData.Bodies[0].JointPositions3D[0].Z
+                        );
+                        Debug.Log(v);
+                    }
                 }
             }
         }
