@@ -1,0 +1,15 @@
+{
+    "name": "SampleUnityBodyTracking",
+    "references": [
+        "GUID:c3ffe45649a07b043a03ce69f5a1a08b"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": []
+}
