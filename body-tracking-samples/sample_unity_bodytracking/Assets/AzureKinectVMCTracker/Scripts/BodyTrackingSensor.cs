@@ -7,7 +7,7 @@ namespace AzureKinectVMCTracker
     public class BodyTrackingSensor : MonoBehaviour
     {
         private BackgroundDataProvider _mBackgroudProvider;
-        private BackgroundData _mBackgroudData;
+        private BackgroundData _mBackgroudData = new BackgroundData();
 
         [SerializeField] private Transform _head, _leftHand, _rightHand, _hip, _leftFoot, _rightFoot;
 

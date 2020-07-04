@@ -40,7 +40,7 @@ public abstract class BackgroundDataProvider
         {
             var temp = dataBuffer;
             dataBuffer = m_frameBackgroundData;
-//            m_frameBackgroundData = temp;
+            m_frameBackgroundData = temp;
             bool result = m_latest;
             m_latest = false;
             return result;
