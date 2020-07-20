@@ -33,8 +33,8 @@ namespace AzureKinectVMCTracker
             _jointTable = new Dictionary<Transform, JointId>()
             {
                 {_head, JointId.Head},
-                {_leftHand, JointId.HandLeft},
-                {_rightHand, JointId.HandRight},
+                {_leftHand, JointId.WristLeft},
+                {_rightHand, JointId.WristRight},
                 {_hip, JointId.Pelvis},
                 {_leftFoot, JointId.FootLeft},
                 {_rightFoot, JointId.FootRight}
@@ -52,19 +52,19 @@ namespace AzureKinectVMCTracker
                         foreach (var tracker in _jointTable)
                         {
                             tracker.Key.position = new Vector3(
-                                                       -_mBackgroudData.Bodies[0].JointPositions3D[(int) tracker.Value]
+                                                       _mBackgroudData.Bodies[0].JointPositions3D[(int) tracker.Value]
                                                            .X,
                                                        -_mBackgroudData.Bodies[0].JointPositions3D[(int) tracker.Value]
                                                            .Y,
-                                                       -_mBackgroudData.Bodies[0].JointPositions3D[(int) tracker.Value].Z
+                                                       _mBackgroudData.Bodies[0].JointPositions3D[(int) tracker.Value].Z
                                                    ) * 10f;
                             
-                            if (tracker.Value == JointId.HandLeft || tracker.Value == JointId.HandRight)
-                            {
-                                tracker.Key.rotation = Quaternion.LookRotation(tracker.Key.position - _hip.position);
-                                tracker.Key.Rotate(new Vector3(0,0,1), 90f);
-                                continue;
-                            }
+                            //if (tracker.Value == JointId.HandLeft || tracker.Value == JointId.HandRight)
+                            //{
+                            //    tracker.Key.rotation = Quaternion.LookRotation(tracker.Key.position - _hip.position);
+                            //    tracker.Key.Rotate(new Vector3(0,0,1), 90f);
+                            //    continue;
+                            //}
 
                             tracker.Key.rotation = new Quaternion(
                                                        _mBackgroudData.Bodies[0].JointRotations[(int) tracker.Value].X *
