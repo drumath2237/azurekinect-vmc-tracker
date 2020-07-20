@@ -51,6 +51,7 @@ namespace AzureKinectVMCTracker
                     {
                         foreach (var tracker in _jointTable)
                         {
+                            tracker.Key.localScale = new Vector3(1f, 1f, 1f);
                             tracker.Key.position = new Vector3(
                                                        _mBackgroudData.Bodies[0].JointPositions3D[(int) tracker.Value]
                                                            .X,
@@ -58,11 +59,12 @@ namespace AzureKinectVMCTracker
                                                            .Y,
                                                        _mBackgroudData.Bodies[0].JointPositions3D[(int) tracker.Value].Z
                                                    ) * 10f;
-                            
-                            //if (tracker.Value == JointId.HandLeft || tracker.Value == JointId.HandRight)
+
+                            //if (tracker.Value == JointId.WristRight || tracker.Value == JointId.WristLeft)
                             //{
-                            //    tracker.Key.rotation = Quaternion.LookRotation(tracker.Key.position - _hip.position);
-                            //    tracker.Key.Rotate(new Vector3(0,0,1), 90f);
+                            //    //tracker.Key.rotation = Quaternion.LookRotation(tracker.Key.position - _hip.position);
+                            //    tracker.Key.rotation = Quaternion.identity;
+                            //    //tracker.Key.Rotate(new Vector3(0, 0, 1), 90f);
                             //    continue;
                             //}
 
