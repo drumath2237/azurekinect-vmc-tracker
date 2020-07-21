@@ -77,6 +77,12 @@ namespace AzureKinectVMCTracker
                 case JointId.Pelvis : case JointId.Head: case JointId.AnkleLeft:
                     return Quaternion.AngleAxis(-90, new Vector3(1, 0, 0))
                            * Quaternion.AngleAxis(-90, new Vector3(0, 0, 1));
+                case JointId.AnkleRight:
+                    return Quaternion.AngleAxis(90, new Vector3(0, 0, 1))
+                           * Quaternion.AngleAxis(-90, new Vector3(0, 1, 0));
+                case JointId.HandLeft:
+                    return Quaternion.AngleAxis(-180, new Vector3(1, 0, 0))
+                           * Quaternion.AngleAxis(90, new Vector3(0, 1, 0));
                 default:
                     return Quaternion.identity;
             }
