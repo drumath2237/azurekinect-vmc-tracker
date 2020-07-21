@@ -16,12 +16,6 @@ namespace AzureKinectVMCTracker
 
         private Dictionary<Transform, JointId> _jointTable;
 
-        [SerializeField] private float rotation_x_bias;
-        [SerializeField] private float rotation_y_bias;
-        [SerializeField] private float rotation_z_bias;
-        [SerializeField] private float rotation_w_bias;
-
-
         private void Start()
         {
             SkeletalTrackingProvider mSkeletalTracking = new SkeletalTrackingProvider();
@@ -53,34 +47,42 @@ namespace AzureKinectVMCTracker
                         {
                             // tracker.Key.localScale = new Vector3(1f, 1f, 1f);
                             tracker.Key.position = new Vector3(
-                                                       _mBackgroudData.Bodies[0].JointPositions3D[(int) tracker.Value]
-                                                           .X,
-                                                       -_mBackgroudData.Bodies[0].JointPositions3D[(int) tracker.Value]
-                                                           .Y,
-                                                       _mBackgroudData.Bodies[0].JointPositions3D[(int) tracker.Value].Z
-                                                   );
+                                -_mBackgroudData.Bodies[0].JointPositions3D[(int) tracker.Value]
+                                    .X,
+                                -_mBackgroudData.Bodies[0].JointPositions3D[(int) tracker.Value]
+                                    .Y,
+                                -_mBackgroudData.Bodies[0].JointPositions3D[(int) tracker.Value].Z
+                            );
 
-                            //if (tracker.Value == JointId.WristRight || tracker.Value == JointId.WristLeft)
-                            //{
-                            //    //tracker.Key.rotation = Quaternion.LookRotation(tracker.Key.position - _hip.position);
-                            //    tracker.Key.rotation = Quaternion.identity;
-                            //    //tracker.Key.Rotate(new Vector3(0, 0, 1), 90f);
-                            //    continue;
-                            //}
-
-                            tracker.Key.rotation = new Quaternion(
-                                                       _mBackgroudData.Bodies[0].JointRotations[(int) tracker.Value].X *
-                                                       rotation_x_bias,
-                                                       _mBackgroudData.Bodies[0].JointRotations[(int) tracker.Value].Y *
-                                                       rotation_y_bias,
-                                                       _mBackgroudData.Bodies[0].JointRotations[(int) tracker.Value].Z *
-                                                       rotation_z_bias,
-                                                       _mBackgroudData.Bodies[0].JointRotations[(int) tracker.Value].W *
-                                                       rotation_w_bias
-                                                   ) * Quaternion.AngleAxis(180, new Vector3(0, 1, 0));
+                            tracker.Key.localRotation = new Quaternion(
+                                    -_mBackgroudData.Bodies[0]
+                                        .JointRotations[(int) tracker.Value].X,
+                                    _mBackgroudData.Bodies[0]
+                                        .JointRotations[(int) tracker.Value].Y,
+                                    -_mBackgroudData.Bodies[0]
+                                        .JointRotations[(int) tracker.Value].Z,
+                                    _mBackgroudData.Bodies[0]
+                                        .JointRotations[(int) tracker.Value].W
+                                )
+                                ;
+                            ApplyIndividualRotationBias(tracker.Key, tracker.Value);
                         }
                     }
                 }
+            }
+        }
+
+        void ApplyIndividualRotationBias(Transform tracker, JointId bone)
+        {
+            switch (bone)
+            {
+                case JointId.Pelvis:
+                    tracker.rotation
+                        *= Quaternion.AngleAxis(-90, new Vector3(1, 0, 0))
+                           * Quaternion.AngleAxis(-90, new Vector3(0, 0, 1));
+                    break;
+                default:
+                    return;
             }
         }
 
