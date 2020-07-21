@@ -21,8 +21,12 @@ namespace AzureKinectVMCTracker
 
         private void Update()
         {
-            _avatar.GetBoneTransform(HumanBodyBones.Head).rotation = _head.rotation;
-            _avatar.GetBoneTransform(HumanBodyBones.Spine).rotation = _Pelvis.rotation;
+            SetBoneTransform(HumanBodyBones.Head, _head);
+            SetBoneTransform(HumanBodyBones.LeftHand, _leftHand);
+            SetBoneTransform(HumanBodyBones.RightHand, _righthand);
+            SetBoneTransform(HumanBodyBones.Spine, _Pelvis);
+            SetBoneTransform(HumanBodyBones.LeftFoot, _leftFoot);
+            SetBoneTransform(HumanBodyBones.RightFoot, _rightFoot);
         }
 
         void SetIK(AvatarIKGoal goal, Transform transform)
@@ -33,12 +37,17 @@ namespace AzureKinectVMCTracker
             _avatar.SetIKRotationWeight(goal, 1.0f);
         }
 
+        void SetBoneTransform(HumanBodyBones bone, Transform _transform)
+        {
+            _avatar.GetBoneTransform(bone).rotation = _transform.rotation;
+        }
+
         private void OnAnimatorIK(int layerIndex)
         {
-            SetIK(AvatarIKGoal.LeftHand, _leftHand);
-            SetIK(AvatarIKGoal.RightHand, _righthand);
-            SetIK(AvatarIKGoal.LeftFoot, _leftFoot);
-            SetIK(AvatarIKGoal.RightFoot, _rightFoot);
+            // SetIK(AvatarIKGoal.LeftHand, _leftHand);
+            // SetIK(AvatarIKGoal.RightHand, _righthand);
+            // SetIK(AvatarIKGoal.LeftFoot, _leftFoot);
+            // SetIK(AvatarIKGoal.RightFoot, _rightFoot);
         }
     }
 }

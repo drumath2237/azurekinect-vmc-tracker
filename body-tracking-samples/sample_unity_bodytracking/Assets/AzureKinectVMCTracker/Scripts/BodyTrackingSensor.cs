@@ -51,14 +51,14 @@ namespace AzureKinectVMCTracker
                     {
                         foreach (var tracker in _jointTable)
                         {
-                            tracker.Key.localScale = new Vector3(1f, 1f, 1f);
+                            // tracker.Key.localScale = new Vector3(1f, 1f, 1f);
                             tracker.Key.position = new Vector3(
                                                        _mBackgroudData.Bodies[0].JointPositions3D[(int) tracker.Value]
                                                            .X,
                                                        -_mBackgroudData.Bodies[0].JointPositions3D[(int) tracker.Value]
                                                            .Y,
                                                        _mBackgroudData.Bodies[0].JointPositions3D[(int) tracker.Value].Z
-                                                   ) * 10f;
+                                                   );
 
                             //if (tracker.Value == JointId.WristRight || tracker.Value == JointId.WristLeft)
                             //{
