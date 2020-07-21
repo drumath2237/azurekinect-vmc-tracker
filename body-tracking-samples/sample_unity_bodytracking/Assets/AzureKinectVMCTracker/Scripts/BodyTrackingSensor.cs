@@ -30,8 +30,8 @@ namespace AzureKinectVMCTracker
                 {_leftHand, JointId.WristLeft},
                 {_rightHand, JointId.WristRight},
                 {_hip, JointId.Pelvis},
-                {_leftFoot, JointId.FootLeft},
-                {_rightFoot, JointId.FootRight}
+                {_leftFoot, JointId.AnkleLeft},
+                {_rightFoot, JointId.AnkleRight}
             };
         }
 
@@ -55,34 +55,30 @@ namespace AzureKinectVMCTracker
                             );
 
                             tracker.Key.localRotation = new Quaternion(
-                                    -_mBackgroudData.Bodies[0]
-                                        .JointRotations[(int) tracker.Value].X,
-                                    _mBackgroudData.Bodies[0]
-                                        .JointRotations[(int) tracker.Value].Y,
-                                    -_mBackgroudData.Bodies[0]
-                                        .JointRotations[(int) tracker.Value].Z,
-                                    _mBackgroudData.Bodies[0]
-                                        .JointRotations[(int) tracker.Value].W
-                                )
-                                ;
-                            ApplyIndividualRotationBias(tracker.Key, tracker.Value);
+                                -_mBackgroudData.Bodies[0]
+                                    .JointRotations[(int) tracker.Value].X,
+                                _mBackgroudData.Bodies[0]
+                                    .JointRotations[(int) tracker.Value].Y,
+                                -_mBackgroudData.Bodies[0]
+                                    .JointRotations[(int) tracker.Value].Z,
+                                _mBackgroudData.Bodies[0]
+                                    .JointRotations[(int) tracker.Value].W
+                            ) * ApplyIndividualRotationBias(tracker.Value);
                         }
                     }
                 }
             }
         }
 
-        void ApplyIndividualRotationBias(Transform tracker, JointId bone)
+        Quaternion ApplyIndividualRotationBias(JointId bone)
         {
             switch (bone)
             {
-                case JointId.Pelvis:
-                    tracker.rotation
-                        *= Quaternion.AngleAxis(-90, new Vector3(1, 0, 0))
+                case JointId.Pelvis : case JointId.Head: case JointId.AnkleLeft:
+                    return Quaternion.AngleAxis(-90, new Vector3(1, 0, 0))
                            * Quaternion.AngleAxis(-90, new Vector3(0, 0, 1));
-                    break;
                 default:
-                    return;
+                    return Quaternion.identity;
             }
         }
 
